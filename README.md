@@ -1,3 +1,6 @@
+## Create project
+curl -s "https://laravel.build/example-app?with=mysql" | bash
+
 ## Run
 vendor/bin/sail up
 
