@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,13 @@ Route::prefix('categories')
         Route::post('/', [CategoryController::class, 'store'])->name('categories.store');
         Route::put('{category}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('{category}', [CategoryController::class, 'delete'])->name('categories.delete');
+    });
+
+Route::prefix('customers')
+    ->group(function () {
+        Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
+        Route::get('{customer}', [CustomerController::class, 'show'])->name('customers.show');
+        Route::post('/', [CustomerController::class, 'store'])->name('customers.store');
+        Route::put('{customer}', [CustomerController::class, 'update'])->name('customers.update');
+        Route::delete('{customer}', [CustomerController::class, 'delete'])->name('customers.delete');
     });
