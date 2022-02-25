@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +50,11 @@ Route::prefix('products')
         Route::post('/', [ProductController::class, 'store'])->name('products.store');
         Route::put('{product}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('{product}', [ProductController::class, 'delete'])->name('products.delete');
+    });
+
+Route::prefix('orders')
+    ->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('{order}', [OrderController::class, 'show'])->name('orders.show');
+        Route::post('/', [OrderController::class, 'store'])->name('orders.store');
     });
