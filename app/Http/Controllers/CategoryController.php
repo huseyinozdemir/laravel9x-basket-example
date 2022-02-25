@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Resources\CategoryCollection;
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\Category\Collection;
+use App\Http\Resources\Category\Resource;
 use App\Http\Requests\Category\StoreRequest;
 use App\Http\Requests\Category\UpdateRequest;
 
@@ -14,34 +14,34 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function index(): CategoryCollection
+    public function index(): Collection
     {
         $categories = Category::all();
-        return new CategoryCollection($categories);
+        return new Collection($categories);
     }
 
-    public function store(StoreRequest $request): CategoryResource
+    public function store(StoreRequest $request): Resource
     {
         $data = $request->validated();
-        return new CategoryResource(Category::create($data));
+        return new Resource(Category::create($data));
     }
 
-    public function update(UpdateRequest $request, Category $category): CategoryResource
+    public function update(UpdateRequest $request, Category $category): Resource
     {
         $data = $request->validated();
         $category->update($data);
-        return new CategoryResource($category);
+        return new Resource($category);
     }
 
-    public function show(Category $category): CategoryResource
+    public function show(Category $category): Resource
     {
-        return new CategoryResource($category);
+        return new Resource($category);
     }
 
-    public function delete(Category $category): CategoryResource
+    public function delete(Category $category): Resource
     {
         $category->delete();
-        return new CategoryResource($category);
+        return new Resource($category);
     }
 
 }
