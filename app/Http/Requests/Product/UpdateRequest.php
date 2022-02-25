@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CustomerStoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +28,14 @@ class CustomerStoreRequest extends FormRequest
             'name' => [
                 'required',
             ],
-            'since' => [
+            'category_id' => [
                 'required',
+                Rule::exists('categories', 'id')
             ],
-            'revenue' => [
+            'price' => [
+                '',
+            ],
+            'stock' => [
                 '',
             ],
         ];

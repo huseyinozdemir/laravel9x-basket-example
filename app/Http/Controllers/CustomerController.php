@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Resources\CustomerCollection;
 use App\Http\Resources\CustomerResource;
-use App\Http\Requests\CustomerStoreRequest;
-use App\Http\Requests\CustomerUpdateRequest;
+use App\Http\Requests\Customer\StoreRequest;
+use App\Http\Requests\Customer\UpdateRequest;
 
 use App\Models\Customer;
 
@@ -19,13 +19,13 @@ class CustomerController extends Controller
         return new CustomerCollection($customers);
     }
 
-    public function store(CustomerStoreRequest $request): CustomerResource
+    public function store(StoreRequest $request): CustomerResource
     {
         $data = $request->validated();
         return new CustomerResource(Customer::create($data));
     }
 
-    public function update(CustomerUpdateRequest $request, Customer $customer): CustomerResource
+    public function update(UpdateRequest $request, Customer $customer): CustomerResource
     {
         $data = $request->validated();
         $customer->update($data);

@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
-use App\Http\Requests\CategoryStoreRequest;
-use App\Http\Requests\CategoryUpdateRequest;
+use App\Http\Requests\Category\StoreRequest;
+use App\Http\Requests\Category\UpdateRequest;
 
 use App\Models\Category;
 
@@ -20,13 +20,13 @@ class CategoryController extends Controller
         return new CategoryCollection($categories);
     }
 
-    public function store(CategoryStoreRequest $request): CategoryResource
+    public function store(StoreRequest $request): CategoryResource
     {
         $data = $request->validated();
         return new CategoryResource(Category::create($data));
     }
 
-    public function update(CategoryUpdateRequest $request, Category $category): CategoryResource
+    public function update(UpdateRequest $request, Category $category): CategoryResource
     {
         $data = $request->validated();
         $category->update($data);

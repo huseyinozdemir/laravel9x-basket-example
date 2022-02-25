@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
-use App\Http\Requests\ProductStoreRequest;
-use App\Http\Requests\ProductUpdateRequest;
+use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\UpdateRequest;
 
 use App\Models\Product;
 
@@ -19,13 +19,13 @@ class ProductController extends Controller
         return new ProductCollection($products);
     }
 
-    public function store(ProductStoreRequest $request): ProductResource
+    public function store(StoreRequest $request): ProductResource
     {
         $data = $request->validated();
         return new ProductResource(Product::create($data));
     }
 
-    public function update(ProductUpdateRequest $request, Product $product): ProductResource
+    public function update(UpdateRequest $request, Product $product): ProductResource
     {
         $data = $request->validated();
         $product->update($data);

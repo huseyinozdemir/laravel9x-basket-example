@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Customer;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryUpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,12 @@ class CategoryUpdateRequest extends FormRequest
         return [
             'name' => [
                 'required',
+            ],
+            'since' => [
+                'required',
+            ],
+            'revenue' => [
+                '',
             ],
         ];
     }

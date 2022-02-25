@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CategoryStoreRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +27,16 @@ class CategoryStoreRequest extends FormRequest
         return [
             'name' => [
                 'required',
+            ],
+            'category_id' => [
+                'required',
+                Rule::exists('categories', 'id')
+            ],
+            'price' => [
+                'required',
+            ],
+            'stock' => [
+                '',
             ],
         ];
     }
