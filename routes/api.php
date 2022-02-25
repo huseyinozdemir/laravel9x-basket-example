@@ -57,4 +57,5 @@ Route::prefix('orders')
         Route::get('/', [OrderController::class, 'index'])->name('orders.index');
         Route::get('{order}', [OrderController::class, 'show'])->name('orders.show');
         Route::post('/', [OrderController::class, 'store'])->name('orders.store');
+        Route::put('{order}', [OrderController::class, 'update'])->name('orders.update');
     });

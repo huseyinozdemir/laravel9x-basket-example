@@ -37,10 +37,6 @@ class StoreRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'items.*.unit_price' => [
-                'required',
-                'numeric',
-            ],
             
         ];
     }

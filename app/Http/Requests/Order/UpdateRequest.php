@@ -37,10 +37,6 @@ class UpdateRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'items.*.unit_price' => [
-                'required',
-                'numeric',
-            ],
         ];
     }
 }
