@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exceptions\StockResponseException;
 
 use App\Http\Resources\Order\Collection;
 use App\Http\Resources\Order\Resource;
@@ -23,6 +24,16 @@ class OrderController extends Controller
         return new Collection($orders);
     }
 
+
+    private function customProductStock($quantity) {
+        if ($quantity < 1) {
+            $code = 500;
+            $message = "errors.invalid-order";
+            throw new StockResponseException($message, $code);
+
+        }
+    }
+
     private function itemsCreateOrUpdate($items, $orderId) {
         $order = OrderItem::where('order_id', $orderId)->delete();
         $total = 0;
@@ -31,6 +42,8 @@ class OrderController extends Controller
                 $product = Product::findOrFail($item['product_id']);
                 $item['unit_price'] = $product->price;
             }
+
+            $this->customProductStock($item['quantity']);
 
             $data = [];
             $data['order_id'] = $orderId;
