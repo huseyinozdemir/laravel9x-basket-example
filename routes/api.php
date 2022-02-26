@@ -7,6 +7,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DiscountController;
+
 
 
 /*
@@ -58,4 +60,9 @@ Route::prefix('orders')
         Route::get('{order}', [OrderController::class, 'show'])->name('orders.show');
         Route::post('/', [OrderController::class, 'store'])->name('orders.store');
         Route::put('{order}', [OrderController::class, 'update'])->name('orders.update');
+    });
+
+Route::prefix('discounts')
+    ->group(function () {
+        Route::get('{order}', [DiscountController::class, 'show'])->name('discounts.show');
     });
