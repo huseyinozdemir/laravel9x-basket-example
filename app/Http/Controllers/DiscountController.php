@@ -116,8 +116,8 @@ class DiscountController extends Controller
     private function applyDiscount(Order $order)
     {
         $items = OrderItem::where('order_id', $order->id)->get();
-        $discountBuy5Get1 = $this->buy5Get1($items);
         $subTotalMaster = $this->subTotal($items);
+        $discountBuy5Get1 = $this->buy5Get1($items, $subTotalMaster);
         if (!empty((array)$discountBuy5Get1))
         {
             $subTotalMaster = $discountBuy5Get1->subtotal;
